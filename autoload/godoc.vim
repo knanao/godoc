@@ -1,12 +1,15 @@
 function! godoc#show_docs(bang, args)
- let arg = join(split(a:args), '.')
- silent! let res = system('go doc -cmd -all '.arg.' 2>/dev/null')
- if v:shell_error != 0
+  let arg = join(split(a:args), '.')
+  silent! let res = system('go doc -cmd -all '.arg.' 2>/dev/null')
+  if v:shell_error != 0
     let err = systemlist('go doc '.arg.' 1>/dev/null')
     echohl ErrorMsg | echomsg err | echohl None
     return
   endif
-  call s:OpenReadOnlyBuffer('' , arg, res)
+  if a:bang == '!'
+    call s:OpenReadOnlyTab('' , arg, res)
+  else
+    call s:OpenReadOnlyBuffer('' , arg, res)
   endif
   setlocal ft=godoc
   nnoremap <buffer> <silent> q :q<cr>
