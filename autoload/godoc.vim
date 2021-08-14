@@ -7,9 +7,9 @@ function! godoc#show_docs(bang, args)
     return
   endif
   if a:bang == '!'
-    call s:OpenReadOnlyTab('' , arg, res)
+    call s:open_read_only_tab('' , arg, res)
   else
-    call s:OpenReadOnlyBuffer('' , arg, res)
+    call s:open_read_only_buffer('' , arg, res)
   endif
   setlocal ft=godoc
   nnoremap <buffer> <silent> q :q<cr>
