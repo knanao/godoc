@@ -9,7 +9,7 @@ function! godoc#show_docs(bang, args)
   if a:bang == '!'
     call s:open_read_only_tab('' , arg, res)
   else
-    call s:open_read_only_buffer('' , arg, res)
+    call s:open_read_only_buffer('v' , arg, res)
   endif
   setlocal ft=godoc
   nnoremap <buffer> <silent> q :q<cr>
